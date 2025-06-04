@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>project</title>
-    <script type="module" crossorigin src="./assets/index-B25r7_tV.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B0zcrJQk.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script type="module" crossorigin src="./assets/index-BE-SdbHL.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DeV2FBDa.css">
   </head>
   <body>
     <div id="app">
@@ -14,7 +17,15 @@
       
       <span id="span1">Last Update: NA</span>
       <span id="span2">Current Location: NA</span>
-      <p><a id="hyper" href="" target="_blank">Open location in Google Maps</a></p>
+      <p><a id="hyper" href="" target="_blank">Open last location in Google Maps</a></p>
+
+      <div id="buttons-container">
+        <button class="button" id="button1">Show latest</button>
+        <button class="button" id="button2">Show all</button>
+        <button class="button" id="button3">Show lines</button>
+      </div>
+
+      <div id="map"></div>
 
     </div>
   </body>
