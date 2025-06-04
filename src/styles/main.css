@@ -1,0 +1,28 @@
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+  margin: 0;
+  overflow: hidden;
+  font-size: 1.2em;
+}
+
+span {
+  height: 35px;
+  user-select: none;
+}
+
+#span3 {
+  user-select: auto;
+  color: blue;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 20px auto;
+}

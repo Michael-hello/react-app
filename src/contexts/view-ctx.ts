@@ -1,11 +1,15 @@
 
-
 export class ViewContext {
 
-    latitude : Number = null;
-    longitude : Number = null;
     last_update : Number = null; //in milliseconds
     locations: ILocation[] = [];
+
+    get most_recent() {
+        if(this.locations == null || this.locations.length == 0)
+            return null;
+        let sorted = this.locations.sort((a,b) => b.time - a.time);
+        return sorted[0];        
+    };
 
     parseJsonResponse(response: string) {
         if(response == null) return;
@@ -39,15 +43,14 @@ export class ViewContext {
         let span1Text = 'Last update: NA.';
         let span2Text = 'Current location: NA';
         let linkHref = '';
+        let latest = this.most_recent;
 
-        if(this.locations && this.locations.length > 0) {
-            let sorted = this.locations.sort((a,b) => b.time - a.time);
-            let most_recent = sorted[0];
-            let time = new Date(most_recent.time).toLocaleString();
-            let loc = `${most_recent.latitude}, ${most_recent.longitude}`;
+        if(latest != null) {            
+            let time = new Date(latest.time).toLocaleString();
+            let loc = `${latest.latitude}, ${latest.longitude}`;
             span1Text = `Last update: ${time}.`;
             span2Text = `Current location: ${loc}`;
-            linkHref = `https://maps.google.com/?q=${most_recent.latitude}, ${most_recent.longitude}`;
+            linkHref = `https://maps.google.com/?q=${latest.latitude}, ${latest.longitude}`;
             link.style.display = 'block';
         };
 
@@ -57,7 +60,7 @@ export class ViewContext {
     };
 };
 
-interface ILocation {
+export interface ILocation {
     latitude: number;
     longitude: number;
     id: string;
