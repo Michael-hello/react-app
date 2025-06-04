@@ -22,12 +22,15 @@ export class ViewContext {
 
         for(let i = 0; i < locations.length; i++) {
             let loc = locations[i];
-            this.locations.push({
+            let location = {
                 latitude: Number(loc.latitude),
                 longitude: Number(loc.longitude),
                 id: loc.string,
                 time: Number(loc.time),
-            });
+            };
+            
+            if(location.time > 1700000000000)
+                this.locations.push(location);
         };
 
         this.updateView();
