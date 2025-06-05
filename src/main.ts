@@ -9,8 +9,9 @@ let req = new XMLHttpRequest();
 const viewCtx = new ViewContext();
 const mapCtx = new MapContext();
 
+/** READ ONLY access key */
+const accessKey = "$2a$10$tsxCXesQpHhoP37i3b5fO.17ucICn.Cx1n27pgkgJnBGofD1x2RrC";
 const binID = "67f8c9fd8a456b7966871939";
-const accessKey = "$2a$10$51hMVK0Z6OfHAnzvMsfMV.T1d0LVjQcJSHyXOXNa9GgEJ20cM./h2";
 
 viewCtx.updateView();
 mapCtx.setupView();
@@ -19,10 +20,10 @@ try{
   req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
       if(req.status == 200) {
-        console.log(req.responseText);
+        
         viewCtx.parseJsonResponse(req.responseText);
-        mapCtx.locations = viewCtx.locations;
 
+        mapCtx.locations = viewCtx.locations;
         mapCtx.setupMap();
       }
     };
