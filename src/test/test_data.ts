@@ -1,5 +1,5 @@
 
-export const test_json_data = `{
+export const test_jsonbin_data = `{
     "record": {
         "locations": [
             {
@@ -138,3 +138,63 @@ export const test_json_data = `{
     }
 }`
 
+
+export const test_fastapi_data = 
+    `[
+        {
+            "id": 3,
+            "latitude": 330.0,
+            "longitude": 440.0,
+            "time": 123213123,
+            "source": "json_bin",
+            "trip": "South America"
+        },
+        {
+            "id": 4,
+            "latitude": 4530.0,
+            "longitude": 440.0,
+            "time": 123213123,
+            "source": "json_bin",
+            "trip": "South America"
+        },
+        {
+            "id": 5,
+            "latitude": 30.6811716,
+            "longitude": 54.8638583,
+            "time": 1744783291660,
+            "source": "json_bin",
+            "trip": "South America"
+        },
+        {
+            "id": 6,
+            "latitude": 30.6811716,
+            "longitude": 54.8638583,
+            "time": 1744783320097,
+            "source": "json_bin",
+            "trip": "South America"
+        },
+        {
+            "id": 7,
+            "latitude": 30.6811716,
+            "longitude": 54.8638583,
+            "time": 1744783350236,
+            "source": "json_bin",
+            "trip": "South America"
+        },
+        {
+            "id": 8,
+            "latitude": 30.6811716,
+            "longitude": 54.8638583,
+            "time": 1744783979241,
+            "source": "json_bin",
+            "trip": "South America"
+        },
+        {
+            "id": 9,
+            "latitude": 30.6811716,
+            "longitude": 54.8638583,
+            "time": 1744784038003,
+            "source": "json_bin",
+            "trip": "South America"
+        }
+    ]`

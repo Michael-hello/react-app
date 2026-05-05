@@ -9,37 +9,7 @@ export class ViewContext {
             return null;
         let sorted = this.locations.sort((a,b) => b.time - a.time);
         return sorted[0];        
-    };
-
-    parseJsonResponse(response: string) {
-        try {
-            if(response == null) return;
-            let obj = JSON.parse(response);
-            let record = obj.record;
-            let locations = record == null ? null : record.locations;
-            if(locations == null) return;
-
-            this.locations = [];
-
-            for(let i = 0; i < locations.length; i++) {
-                let loc = locations[i];
-                let location = {
-                    latitude: Number(loc.latitude),
-                    longitude: Number(loc.longitude),
-                    id: loc.string,
-                    time: Number(loc.time),
-                };
-                
-                if(location.time > 1700000000000)
-                    this.locations.push(location);
-            }; 
-        }
-        catch(e) {            
-            console.error('Error parsing JSON response:', e);
-        };
-
-        this.updateView();
-    };
+    };   
 
     updateView() {
         const span1 = document.querySelector<HTMLSpanElement>('#span1');

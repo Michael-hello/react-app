@@ -86,6 +86,8 @@ export class MapContext {
     /** leaftletJS docs: https://leafletjs.com/examples/quick-start/ */
     public setupMap() {
 
+        if(this.setup) return;
+
         let lat = 51.505;
         let long = -0.09;
         let latest = this.most_recent;
@@ -141,7 +143,8 @@ export class MapContext {
         for(let marker of this.markers)
             group.addLayer(marker);
 
-        this.map.fitBounds(group.getBounds())
+        if(this.map != null && this.markers.length > 0)
+            this.map.fitBounds(group.getBounds());
     };
 };
 
