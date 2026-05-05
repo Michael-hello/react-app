@@ -1,9 +1,9 @@
 {
-  "name": "stereonet-project",
+  "name": "location-mapper",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
-  "homepage": "https://Michael-hello.github.io/stereonet-project",
+  "homepage": "https://michael-hello.github.io/react-app/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

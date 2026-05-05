@@ -1,6 +1,7 @@
 
-import L, { LatLngBoundsExpression, LatLngTuple } from 'leaflet';
+import L, { LatLngTuple } from 'leaflet';
 import { ILocation } from './view-ctx';
+
 
 export class MapContext {
 
@@ -22,7 +23,8 @@ export class MapContext {
         return sorted[0];        
     };
 
-    setupView() {
+    /** initial setup: map buttons to events */
+    public setupMapView() {
         const button1 = document.querySelector<HTMLButtonElement>('#button1'); //show latest
         const button2 = document.querySelector<HTMLButtonElement>('#button2'); //show all
         const button3 = document.querySelector<HTMLButtonElement>('#button3'); //show lines
@@ -33,7 +35,7 @@ export class MapContext {
     };
 
     //show latest
-    btn1Clicked() {
+    private btn1Clicked() {
         this.removeMarkers();
         let last = this.most_recent;
 
@@ -44,7 +46,7 @@ export class MapContext {
     };
 
     //show all
-    btn2Clicked() {
+    private btn2Clicked() {
         this.showAll = !this.showAll;
         let text = this.showAll ? 'Hide all' : 'Show all';
         const button2 = document.querySelector<HTMLButtonElement>('#button2');
@@ -61,7 +63,7 @@ export class MapContext {
     };
 
     //show lines
-    btn3Clicked() {
+    private btn3Clicked() {
         this.showLines = !this.showLines;
         let text = this.showLines ? 'Hide lines' : 'Show lines';
         const button3 = document.querySelector<HTMLButtonElement>('#button3');
@@ -82,7 +84,7 @@ export class MapContext {
     };
 
     /** leaftletJS docs: https://leafletjs.com/examples/quick-start/ */
-    setupMap() {
+    public setupMap() {
 
         let lat = 51.505;
         let long = -0.09;
@@ -118,7 +120,7 @@ export class MapContext {
         this.addMarker(latest);
     };
 
-    addMarker(location: ILocation) {
+    private addMarker(location: ILocation) {
 
         if(!this.setup || this.map == null) return;
         if(location == null) return;
@@ -127,14 +129,14 @@ export class MapContext {
         this.markers.push(m);
     };
 
-    removeMarkers() {
+    private removeMarkers() {
         for(let marker of this.markers){
             marker.remove();
         }
         this.markers = [];
     };
 
-    zoomToMarkers() {
+    private zoomToMarkers() {
         let group = new L.FeatureGroup();
         for(let marker of this.markers)
             group.addLayer(marker);

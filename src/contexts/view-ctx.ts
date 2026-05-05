@@ -4,7 +4,7 @@ export class ViewContext {
     last_update : Number = null; //in milliseconds
     locations: ILocation[] = [];
 
-    get most_recent() {
+    get most_recent() : ILocation | null {
         if(this.locations == null || this.locations.length == 0)
             return null;
         let sorted = this.locations.sort((a,b) => b.time - a.time);
@@ -12,25 +12,30 @@ export class ViewContext {
     };
 
     parseJsonResponse(response: string) {
-        if(response == null) return;
-        let obj = JSON.parse(response);
-        let record = obj.record;
-        let locations = record == null ? null : record.locations;
-        if(locations == null) return;
+        try {
+            if(response == null) return;
+            let obj = JSON.parse(response);
+            let record = obj.record;
+            let locations = record == null ? null : record.locations;
+            if(locations == null) return;
 
-        this.locations = [];
+            this.locations = [];
 
-        for(let i = 0; i < locations.length; i++) {
-            let loc = locations[i];
-            let location = {
-                latitude: Number(loc.latitude),
-                longitude: Number(loc.longitude),
-                id: loc.string,
-                time: Number(loc.time),
-            };
-            
-            if(location.time > 1700000000000)
-                this.locations.push(location);
+            for(let i = 0; i < locations.length; i++) {
+                let loc = locations[i];
+                let location = {
+                    latitude: Number(loc.latitude),
+                    longitude: Number(loc.longitude),
+                    id: loc.string,
+                    time: Number(loc.time),
+                };
+                
+                if(location.time > 1700000000000)
+                    this.locations.push(location);
+            }; 
+        }
+        catch(e) {            
+            console.error('Error parsing JSON response:', e);
         };
 
         this.updateView();

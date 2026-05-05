@@ -1,3 +1,9 @@
+This project is a simple application that displays the location data acquired by the android "location-logger" app. The tech stack includes:
+    - React - JS framework
+    - Leaflet - mapping library
+    - XMLHttpRequest - for querying remote data
+
+
 To run in development:
     - Need Node version 18.10.0 to run, as well as yarn
     - 'Yarn' to install dependencies
