@@ -5,7 +5,8 @@ import { ILocation } from "./view-ctx";
 const jsonBinGetKey = "$2a$10$tsxCXesQpHhoP37i3b5fO.17ucICn.Cx1n27pgkgJnBGofD1x2RrC";
 const binID = "67f8c9fd8a456b7966871939";
 
-const fastApiGetKey = "0w6ph89tvHVkcyKzClMwRFtIczJFPHZb";
+/** READ ONLY api key for fastapi web app */
+const fastApiGetKey = "e9c53798cd2f424f81dcd248f9c77f5a";
 
 
 export class RequestContext extends XMLHttpRequest {
@@ -32,6 +33,7 @@ export class RequestContext extends XMLHttpRequest {
 
         };
 
+        this.withCredentials = true;
         this.send();
     };
 
@@ -44,7 +46,6 @@ export class RequestContext extends XMLHttpRequest {
             if(requestCtx.status == 200) {
 
                 let response = requestCtx.responseText;
-                console.log(response)
                 locations = RequestContext.parseJson(response, this.source);
             };
         };
@@ -70,7 +71,6 @@ export class RequestContext extends XMLHttpRequest {
             locations = obj;
         };
 
-        console.log(locations);
 
         if(locations == null) return out;
 

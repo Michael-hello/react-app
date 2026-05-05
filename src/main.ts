@@ -25,6 +25,7 @@ try {
 
     mapCtx.locations = viewCtx.locations;
     mapCtx.setupMap();
+    mapCtx.showLatest();
   };
 
   requestCtx.getLocations();
@@ -35,7 +36,7 @@ try {
 
 
 
-
+//TO DO: move into deidcated test
 // let locations = RequestContext.parseJson(test_jsonbin_data, "jsonbin");
 // let locations = RequestContext.parseJson(test_fastapi_data, "fastapi");
 

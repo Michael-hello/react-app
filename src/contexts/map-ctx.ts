@@ -34,6 +34,10 @@ export class MapContext {
         button3.addEventListener('click', this.btn3Clicked.bind(this)); 
     };
 
+    public showLatest() {
+        this.btn1Clicked();
+    };
+
     //show latest
     private btn1Clicked() {
         this.removeMarkers();
