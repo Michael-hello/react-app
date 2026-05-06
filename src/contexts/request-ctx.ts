@@ -7,7 +7,7 @@ const binID = "67f8c9fd8a456b7966871939";
 
 /** READ ONLY api key for fastapi web app */
 const fastApiGetKey = "e9c53798cd2f424f81dcd248f9c77f5a";
-
+const fastApiUrl = "https://python-backend-locations.onrender.com";
 
 export class RequestContext extends XMLHttpRequest {
 
@@ -16,6 +16,17 @@ export class RequestContext extends XMLHttpRequest {
         public source:  'jsonbin' | 'fastapi'
     ){
         super()
+    };
+
+    getLatestLocation() {
+        /** Only fastapi supports this endpoint */
+        if (this.source === 'jsonbin') return;
+        
+        this.open("GET", `${fastApiUrl}/locations_latest`, true);        
+        this.setRequestHeader("api-key-secret", fastApiGetKey)
+
+        this.withCredentials = false;
+        this.send();
     };
 
 
@@ -28,12 +39,12 @@ export class RequestContext extends XMLHttpRequest {
 
         } else if (this.source === 'fastapi') {
 
-            this.open("GET", `https://python-backend-locations.onrender.com/locations`, true);
+            this.open("GET", `${fastApiUrl}/locations`, true);
             this.setRequestHeader("api-key-secret", fastApiGetKey)
 
         };
 
-        this.withCredentials = true;
+        this.withCredentials = false;
         this.send();
     };
 
@@ -43,7 +54,7 @@ export class RequestContext extends XMLHttpRequest {
         let locations: ILocation[] = [];
 
         if (requestCtx.readyState == XMLHttpRequest.DONE) {
-            if(requestCtx.status == 200) {
+            if(requestCtx.status >= 200 && requestCtx.status < 300) {
 
                 let response = requestCtx.responseText;
                 locations = RequestContext.parseJson(response, this.source);

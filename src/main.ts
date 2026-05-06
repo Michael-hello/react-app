@@ -17,7 +17,7 @@ mapCtx.setupMapView();
 
 
 try {
-  requestCtx.onreadystatechange = () => {    
+  requestCtx.onreadystatechange = () => {   
     let locations = requestCtx.parseResponse(requestCtx);
 
     viewCtx.locations = locations;
